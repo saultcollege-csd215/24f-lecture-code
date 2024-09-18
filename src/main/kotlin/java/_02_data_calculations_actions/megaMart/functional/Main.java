@@ -13,13 +13,13 @@ import static java._02_data_calculations_actions.megaMart.givenCode.App.shopping
 
 public class Main {
 
-    public static void addItemToCart(String name, Double price) {
-        shoppingCart = addItem(shoppingCart, new CartItem(name, price));    // Updating/reading a global variable is an action
-        // calcCartTotal();                                                 // The lines below fit better in this function than as a separate function
-        var total = calcTotal(shoppingCart);
-        DOM.setCartTotal(total);                    // Updating the DOM is an action
-        updateShippingIcons(shoppingCart);          // This is still an action, but it now uses an explicit input
-        updateTaxDom(total);
+    public static List<CartItem> addItemToCart(List<CartItem> cart, String name, Double price) {
+        // Instead of updating a global variable, we now pass in the cart as an input
+        // and return a cart as an explicit output
+        cart = addItem(cart, new CartItem(name, price));    // Updating/reading a global variable is an action
+        calcCartTotal(cart);     // This is still an action, but it now uses an explicit input instead of reading a global                                              // The lines below fit better in this function than as a separate function
+
+        return cart;
     }
 
     // This new function is a calculation, and thus easily testable and reusable
@@ -30,18 +30,12 @@ public class Main {
         return newItems;
     }
 
-    // After refactoring with calculation, the following method is no longer needed, and is merged into
-    // the addItemToCart method:
-//    public static void calcCartTotal() {
-//        shoppingCartTotal = 0.0;
-//        for (CartItem item : shoppingCart) {
-//            shoppingCartTotal += item.price();  // Updating a global variable is an action
-//        }
-//        DOM.setCartTotal(shoppingCartTotal);    // Updating the DOM is an action
-//        // Reading a global variable is an action
-//        updateShippingIcons();
-//        updateTaxDom();
-//    }
+    public static void calcCartTotal(List<CartItem> cart) {
+        var total = calcTotal(cart);
+        DOM.setCartTotal(total);                    // Updating the DOM is an action
+        updateShippingIcons(cart);          // This is still an action, but it now uses an explicit input
+        updateTaxDom(total);
+    }
 
     public static void updateShippingIcons(List<CartItem> cart) {
         var buyButtons = DOM.getBuyButtons();   // Reading the DOM is an action

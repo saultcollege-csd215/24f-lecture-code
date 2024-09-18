@@ -54,7 +54,7 @@ public class Main {
         return new Email("newsletter@coupondog.ca",
                 subscriber.email(),
                 "Coupons for you!",
-                "Hi there, " + subscriber.email() + "! Here are some coupons for you: \n" + String.join("\n", couponStrings) + "\n");
+                "Here are some coupons for you: \n" + String.join("\n", couponStrings));
     }
 
     public static List<String> toStringList(List<Coupon> coupons) {

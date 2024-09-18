@@ -39,10 +39,10 @@ fun subscriberRank(subscriber: Subscriber) =
 
 fun makeEmail(subscriber: Subscriber, coupons: List<Coupon>) =
     Email(
-        from = "newsletter@coupondog.com",
+        from = "newsletter@coupondog.ca",
         to = subscriber.email,
-        subject = "Check out these coupons!",
-        body = "Here are your coupons: ${coupons.joinToString { it.code }}")
+        subject = "Coupons for you!",
+        body = "Here are some coupons for you: \n${coupons.joinToString { it.code }}")
 
 /********************
  * ACTIONS
