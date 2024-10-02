@@ -56,9 +56,9 @@ fun sendNewsletter() {
     val coupons = fetchCoupons()            // This is an action, so sendNewsletter is an action
     val subscribers = fetchSubscribers()    // This is an action, so sendNewsletter is an action
 
-    val goodCoupons = selectCouponsByRank(coupons, CouponRank.GOOD);
-    val bestCoupons = selectCouponsByRank(coupons, CouponRank.BEST);
-    val emails = couponEmailsForSubscribers(subscribers, goodCoupons, bestCoupons);
+    val goodCoupons = selectCouponsByRank(coupons, CouponRank.GOOD)
+    val bestCoupons = selectCouponsByRank(coupons, CouponRank.BEST)
+    val emails = couponEmailsForSubscribers(subscribers, goodCoupons, bestCoupons)
 
     sendEmails(emails)                      // This is an action, so sendNewsletter is an action
 }
