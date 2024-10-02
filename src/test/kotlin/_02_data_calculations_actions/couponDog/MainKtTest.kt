@@ -12,8 +12,8 @@ class MainKtTest {
         val goodSubscriber = Subscriber("", 19)
         val bestSubscriber = Subscriber("", 20)
 
-        assertEquals(SubscriberRank.GOOD, subscriberRank(goodSubscriber))
-        assertEquals(SubscriberRank.BEST, subscriberRank(bestSubscriber))
+        assertEquals(SubscriberRank.NORMAL, subscriberRank(goodSubscriber))
+        assertEquals(SubscriberRank.EXCELLENT, subscriberRank(bestSubscriber))
     }
 
     @Test

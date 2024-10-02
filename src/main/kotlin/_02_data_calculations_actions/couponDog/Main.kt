@@ -13,7 +13,7 @@ package _02_data_calculations_actions.couponDog
 
 // Let's use enum and data classes to represent the data we're working with.
 enum class CouponRank { GOOD, BAD, BEST }
-enum class SubscriberRank { GOOD, BEST }
+enum class SubscriberRank { EXCELLENT, NORMAL }
 data class Coupon(val code: String, val rank: CouponRank)
 data class Email(val from: String, val to: String, val subject: String, val body: String)
 data class Subscriber(val email: String, val referralCount: Int)
@@ -30,12 +30,12 @@ fun couponEmailsForSubscribers(subscribers: List<Subscriber>, goodCoupons: List<
 
 fun couponEmailForSubscriber(subscriber: Subscriber, goodCoupons: List<Coupon>, bestCoupons: List<Coupon>) =
     when (subscriberRank(subscriber)) {
-        SubscriberRank.GOOD -> makeEmail(subscriber, goodCoupons)
-        SubscriberRank.BEST -> makeEmail(subscriber, bestCoupons)
+        SubscriberRank.EXCELLENT -> makeEmail(subscriber, goodCoupons)
+        SubscriberRank.NORMAL -> makeEmail(subscriber, bestCoupons)
     }
 
 fun subscriberRank(subscriber: Subscriber) =
-    if (subscriber.referralCount >= 20) SubscriberRank.BEST else SubscriberRank.GOOD
+    if (subscriber.referralCount >= 20) SubscriberRank.NORMAL else SubscriberRank.EXCELLENT
 
 fun makeEmail(subscriber: Subscriber, coupons: List<Coupon>) =
     Email(
